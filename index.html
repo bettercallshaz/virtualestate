@@ -166,6 +166,26 @@
     .qa-mark{ font-size:1.05rem; }
   }
 
+  /* ---------- pre-call faq ---------- */
+  .faq{ display:flex; flex-direction:column; max-width:760px; }
+  .faq details{ border-bottom:1px solid var(--line); }
+  .faq summary{
+    list-style:none; cursor:pointer; position:relative;
+    padding:22px 32px 22px 0; font-size:1.05rem; font-weight:600; color:var(--white);
+  }
+  .faq summary::-webkit-details-marker{ display:none; }
+  .faq summary::marker{ content:""; }
+  .faq summary::after{
+    content:"+"; position:absolute; right:0; top:20px;
+    font-family:'IBM Plex Mono', monospace; font-weight:400; font-size:1.1rem; color:var(--violet-bright);
+  }
+  .faq details[open] summary::after{ content:"–"; }
+  .faq details p{ color:var(--dim); font-size:0.95rem; margin:0 0 22px; max-width:640px; padding-right:32px; }
+  .faq-h{
+    font-family:'IBM Plex Mono', monospace; font-size:0.75rem; letter-spacing:0.1em;
+    text-transform:uppercase; color:var(--violet-bright); margin:36px 0 8px;
+  }
+
   /* ---------- format compare ---------- */
   .format-compare{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
   .format-col{ background:var(--bg-2); padding:30px 26px; display:flex; flex-direction:column; gap:22px; }
@@ -189,7 +209,12 @@
   }
   .stat-card h3{ font-size:0.95rem; color:var(--white); margin:12px 0 12px; font-weight:600; }
   .stat-card p{ color:var(--dim); font-size:0.88rem; margin:0; }
+  .stat-source{ margin:10px 0 0; font-size:0.75rem; }
+  .stat-source a{ color:var(--violet-bright); text-decoration:underline; text-underline-offset:2px; }
+  .stat-source a:hover{ color:var(--white); }
   .stats-note{ margin-top:22px; font-size:0.8rem; color:#6b6b73; max-width:740px; line-height:1.65; }
+  .stats-note a{ color:var(--violet-bright); text-decoration:underline; text-underline-offset:2px; }
+  .stats-note a:hover{ color:var(--white); }
   @media (max-width:960px){ .stats{grid-template-columns:repeat(2,1fr);} }
   @media (max-width:560px){ .stats{grid-template-columns:1fr;} .stat-card{ padding:28px 24px; } }
 
@@ -215,13 +240,29 @@
   @media (max-width:860px){ .pillars{grid-template-columns:1fr;} .pillar{ padding:28px 24px; } }
 
   /* ---------- process ---------- */
-  .walk{ display:flex; flex-direction:column; }
-  .walk-step{ display:grid; grid-template-columns:120px 1fr; gap:32px; padding:34px 0; border-bottom:1px solid var(--line); align-items:start; }
-  .walk-step:last-child{ border-bottom:none; }
-  .walk-step .room-tag{ font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.08em; color:var(--cyan); text-transform:uppercase; padding-top:4px; }
-  .walk-step h3{ font-size:1.2rem; color:var(--white); margin-bottom:8px; }
-  .walk-step p{ color:var(--dim); margin:0; font-size:0.95rem; max-width:560px; }
-  @media (max-width:640px){ .walk-step{grid-template-columns:1fr; gap:8px; padding:26px 0;} }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .grid3 .card{ background:var(--bg-2); margin:0; padding:34px 30px; display:flex; flex-direction:column; gap:12px; }
+  .grid3 .card h3{ font-size:1.12rem; color:var(--white); margin:0; }
+  .grid3 .card p{ color:var(--dim); font-size:0.92rem; margin:0; }
+  .steps{ list-style:none; margin:28px 0 0; padding:0; display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; counter-reset:step; }
+  .steps li{ background:var(--bg-2); margin:0; padding:28px 24px; display:flex; flex-direction:column; gap:8px; counter-increment:step; }
+  .steps li::before{ content:counter(step, decimal-leading-zero); font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.08em; color:var(--cyan); }
+  .steps b{ color:var(--white); font-family:'Sora',sans-serif; font-size:1.05rem; font-weight:600; }
+  .steps span{ color:var(--dim); font-size:0.9rem; }
+  @media (max-width:860px){ .grid3{ grid-template-columns:1fr; } .grid3 .card{ padding:28px 24px; } .steps{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:520px){ .steps{ grid-template-columns:1fr; } }
+
+  .tracks-block{ margin-top:64px; }
+  .tracks{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:8px; overflow:hidden; }
+  .tracks .card{ background:var(--bg-2); margin:0; padding:34px 30px; display:flex; flex-direction:column; gap:12px; }
+  .tracks .tag{ font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--violet-bright); }
+  .tracks .card h3{ font-size:1.12rem; color:var(--white); margin:4px 0 0; }
+  .tracks .card p{ color:var(--dim); font-size:0.92rem; margin:0; }
+  .tracks .ev{ font-size:0.8rem; line-height:1.65; color:#6b6b73; }
+  .tracks .ev a{ color:var(--violet-bright); text-decoration:underline; text-underline-offset:2px; }
+  .tracks .ev a:hover{ color:var(--white); }
+  .tracks .scope{ margin-top:auto; padding-top:8px; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--cyan); }
+  @media (max-width:760px){ .tracks{ grid-template-columns:1fr; } .tracks .card{ padding:28px 24px; } }
 
   /* ---------- cta ---------- */
   .cta-block{
@@ -281,10 +322,9 @@
     <a href="#difference">The Difference</a>
     <a href="#format">Choosing a Format</a>
     <a href="#results">Results</a>
-    <a href="#included">What's Included</a>
     <a href="#process">Process</a>
   </nav>
-  <a class="cta-small" href="#contact">Book a Discovery Call</a>
+  <a class="cta-small" href="#contact">Schedule a Call</a>
 </header>
 
 <nav class="rail" id="rail">
@@ -293,8 +333,8 @@
   <a class="rail-item" data-target="difference" href="#difference"><span class="rail-dot"></span><span class="rail-label">Difference</span></a>
   <a class="rail-item" data-target="format" href="#format"><span class="rail-dot"></span><span class="rail-label">Format</span></a>
   <a class="rail-item" data-target="results" href="#results"><span class="rail-dot"></span><span class="rail-label">Results</span></a>
-  <a class="rail-item" data-target="included" href="#included"><span class="rail-dot"></span><span class="rail-label">Included</span></a>
   <a class="rail-item" data-target="process" href="#process"><span class="rail-dot"></span><span class="rail-label">Process</span></a>
+  <a class="rail-item" data-target="pre-call" href="#pre-call"><span class="rail-dot"></span><span class="rail-label">Qualifiers</span></a>
   <a class="rail-item" data-target="contact" href="#contact"><span class="rail-dot"></span><span class="rail-label">Contact</span></a>
 </nav>
 
@@ -304,9 +344,9 @@
   <div class="wrap hero-content">
     <span class="eyebrow">3D Immersive Walkthrough</span>
     <h1>Walk the space.<br>Not a <em>slideshow</em> of it.</h1>
-    <p class="lede">Virtual Estate turns an on-site scan into a smooth, walkable 3D tour of the property, the kind a serious buyer explores on their own time before they ever book a viewing. Branded entirely to you, delivered as one file you own outright, with nothing to subscribe to.</p>
+    <p class="lede">Virtual Estate turns a real on-site space into a smooth, walkable 3D walkthrough your audience can move through in a browser, on a phone, with no app installation. The kind a serious buyer explores on their own time before they ever book a viewing. Branded entirely to you, the finished walkthrough you own outright, with nothing to subscribe to.</p>
     <div class="hero-actions">
-      <a class="btn-primary" href="#contact">Book a Discovery Call →</a>
+      <a class="btn-primary" href="#contact">Schedule a Call →</a>
       <a class="btn-ghost" href="#difference">See the difference</a>
     </div>
     <div class="hero-meta">
@@ -347,7 +387,7 @@
       </div>
       <div class="qa-item">
         <span class="qa-mark">06</span>
-        <div><h3>What do I actually walk away owning?</h3><p>One self-contained file, fully branded to you, with no subscription attached and no dependency on a third-party platform staying online. It's a fixed production cost, not a recurring one — the risk sits with the file working, not with a monthly bill.</p></div>
+        <div><h3>What do I actually walk away owning?</h3><p>A link that opens in a browser, in your brand. Send it by message or email, show it as a QR code, or have your web team embed it. At sign-off it is handed over and belongs to you. There is no subscription for the walkthrough.</p></div>
       </div>
       <div class="qa-item">
         <span class="qa-mark">07</span>
@@ -355,7 +395,7 @@
       </div>
       <div class="qa-item">
         <span class="qa-mark">08</span>
-        <div><h3>What happens to the file if my website changes, or years from now?</h3><p>Nothing — that's the point of owning it outright. It's a standalone file, not a hosted link on someone else's platform. If your website changes, you re-embed the same file. If a platform shuts down, it doesn't affect you, because you were never dependent on one.</p></div>
+        <div><h3>What happens to the file if my website changes, or years from now?</h3><p>After-sales service helps keep your walkthrough live, with scope agreed with you. Work beyond that is a new engagement, which keeps scope clear for both sides.</p></div>
       </div>
     </div>
   </div>
@@ -372,17 +412,17 @@
       <div class="demo-frame-bar">
         <span class="demo-dot"></span>
         <span class="demo-label">Live capture — sample walkthrough</span>
-        <a class="demo-open" href="https://superspl.at/s?id=dfa9e92b" target="_blank" rel="noopener">Open directly ↗</a>
+        <a class="demo-open" href="https://playcanv.as/p/wn4416RD/" target="_blank" rel="noopener">Open directly ↗</a>
       </div>
-      <iframe id="viewer" width="800" height="500" allow="fullscreen; xr-spatial-tracking" src="https://superspl.at/s?id=dfa9e92b"></iframe>
+      <iframe id="viewer" width="800" height="500" allow="fullscreen; xr-spatial-tracking" src="https://playcanv.as/p/wn4416RD/"></iframe>
     </div>
         <div class="demo-frame reveal">
       <div class="demo-frame-bar">
         <span class="demo-dot"></span>
         <span class="demo-label">Live capture — sample walkthrough</span>
-        <a class="demo-open" href="https://superspl.at/s?id=69fac8b9" target="_blank" rel="noopener">Open directly ↗</a>
+        <a class="demo-open" href="https://playcanv.as/p/NKttvisc/" target="_blank" rel="noopener">Open directly ↗</a>
       </div>
-      <iframe id="viewer" width="800" height="500" allow="fullscreen; xr-spatial-tracking" src="https://superspl.at/s?id=69fac8b9"></iframe>
+      <iframe id="viewer" width="800" height="500" allow="fullscreen; xr-spatial-tracking" src="https://playcanv.as/p/NKttvisc/"></iframe>
     </div>
     <div class="compare reveal" style="margin-top:64px;">
       <div class="compare-col">
@@ -441,83 +481,115 @@
     </div>
     <p class="stats-note reveal">If a simple photo set genuinely does the job for your listing, I'll tell you that instead of trying to sell you more than the listing needs.</p>
   </div>
+  <div class="wrap tracks-block">
+    <div class="tracks reveal">
+      <article class="card">
+        <span class="tag">Property and developments</span>
+        <h3>Show the real unit, not only the render.</h3>
+        <p>Buyers and tenants see layout and finish before they travel, so the visits that happen are better informed.</p>
+        <p class="ev">Digital-twin listings drew 38% more applications and rented about 30 days faster (PlanOmatic case study, third party).</p>
+        <span class="scope">Scoped on a call</span>
+      </article>
+      <article class="card">
+        <span class="tag">Hospitality and venues</span>
+        <h3>Let guests see the room before they book.</h3>
+        <p>Hotels, event spaces and restaurants can show scale, light and layout that photos flatten.</p>
+        <p class="ev">A hotel study of about 130,000 visitors with a control group reported 3.6x the conversion for viewers of tours plus video (<a href="https://hospitalitynet.org/news/4033212.html" target="_blank" rel="noopener">Hospitality Net</a>, third party).</p>
+        <span class="scope">Scoped on a call</span>
+      </article>
+      <article class="card ph" id="product-card">
+        <span class="tag">Retail and products</span>
+        <h3>Turn a product into something you can turn around.</h3>
+        <p>Show a product from every side, with optional on-screen labels and buttons.</p>
+        <p class="ev">Shopify reports products with 3D or AR previews saw 94% higher conversion. This is platform-reported and the method is not published (<a href="https://changelog.shopify.com/posts/shop-adds-3d-and-augmented-reality-ar-previews" target="_blank" rel="noopener">Shopify</a>).</p>
+        <span class="scope">Scoped on a call</span>
+      </article>
+      <article class="card ph" id="museum-card">
+        <span class="tag">Museums and heritage</span>
+        <h3>Bring an artefact or gallery to people who cannot visit.</h3>
+        <p>Objects and rooms can be explored at the visitor's own pace, with notes you choose to add.</p>
+        <p class="ev">A peer-reviewed study of 84 visitors at a Thai museum found immersive experiences scored higher than 360 tours on presence and engagement (<a href="https://atopia.space/blog/why-virtual-exhibitions-outperform-360-tours-in-museums" target="_blank" rel="noopener">summary</a>). Adjacent evidence, not specific to this method.</p>
+        <span class="scope">Scoped on a call</span>
+      </article>
+    </div>
+  </div>
 </section>
 
 <section id="results">
   <div class="wrap">
     <div class="section-head reveal">
       <span class="kicker">04 · What the category delivers</span>
-      <h2>This isn't a novelty — it moves numbers owners care about.</h2>
-      <p>Published case studies across the digital twin and 3D tour industry point to the same three outcomes, whichever vendor or method is used: faster leasing, higher conversion, and far fewer wasted physical showings.</p>
+      <h2>This isn't a novelty, it moves numbers owners care about.</h2>
+      <p>Published case studies across the digital twin and 3D tour industry point to the same four outcomes, whichever vendor or method is used: faster leasing, higher conversion, far fewer wasted physical showings and saved expenses.</p>
     </div>
     <div class="stats reveal">
+      <div class="stat-card">
+        <span class="figure">+20%</span>
+        <h3>Applicant conversion, with -95% in-person showings needed</h3>
+        <p>A room-rental platform cut physical showings by more than 95% after moving to guided digital-twin tours — the same team could show around four times as many units per session, with applicant conversion up 20%.</p>
+      </div>
+      <div class="stat-card">
+        <span class="figure">+31%</span>
+        <h3>Faster to close, with 4% to 9% higher price</h3>
+        <p>Independent research comparing matched home listings found that units marketed with a 3D walkthrough closed noticeably faster than photo-only listings, and sold for more on average. The effect held up across a large, controlled sample of 143,575 listings.</p>
+        <p class="stat-source"><a href="https://matterport.com/blog/3d-tours-properties-sell-31-faster-and-higher-price">Matterport analysis</a></p>
+      </div>
       <div class="stat-card">
         <span class="figure">+38%</span>
         <h3>More applications, ~30 days faster to rent</h3>
         <p>A U.S. rental-marketing operator found properties listed with a digital twin drew more applications than photo-only listings, and filled roughly a month sooner on average.</p>
+        <p class="stat-source"><a href="https://matterport.com/industries/case-studies">PlanOmatic Case Study</a></p>
       </div>
       <div class="stat-card">
-        <span class="figure">−95%</span>
-        <h3>Fewer in-person showings needed</h3>
-        <p>A room-rental platform cut physical showings by more than 95% after moving to guided digital-twin tours — the same team could show around four times as many units per session, with applicant conversion up 20%.</p>
-      </div>
-      <div class="stat-card">
-        <span class="figure">10x</span>
-        <h3>New revenue line, not just a marketing add-on</h3>
-        <p>A B2B lead-generation firm built an entirely new service around 3D virtual walkthroughs and reported roughly 1,000% growth in that line of business within two years of launching it.</p>
-      </div>
-      <div class="stat-card">
-        <span class="figure">+31%</span>
-        <h3>Faster to close, at a higher price</h3>
-        <p>Independent research comparing matched home listings found that units marketed with a 3D walkthrough closed noticeably faster than photo-only listings, and sold for more on average. The effect held up across a large, controlled sample — not a one-off case study.</p>
+        <span class="figure">+$500,000</span>
+        <h3>Saved in 15 months in reduced travel and site visits, and Recouped 6,000 hours of required survey work</h3>
+        <p>A US bank Leverages digital twins to streamline acquisition work and ongoing branch projects across hundreds of locations.</p>
+        <p class="stat-source"><a href="https://matterport.com/industries/case-studies">BMO Case Study</a></p>
       </div>
     </div>
-    <p class="stats-note reveal">Figures above are paraphrased from published case studies across the digital twin and 3D virtual tour industry — rental marketing, co-living platforms, and B2B lead generation — not from Virtual Estate's own client data. They illustrate what the category delivers when adopted properly; results depend on the property, the market, and how the tour is used.</p>
-  </div>
-</section>
-
-<section id="included">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="kicker">05 · What's included</span>
-      <h2>Everything that makes it usable, not just impressive.</h2>
-      <p>A good scan on its own isn't a deliverable. This is what actually ships in the handoff.</p>
-    </div>
-    <div class="pillars reveal">
-      <div class="pillar"><span class="num">→</span><h3>A considered opening view</h3><p>The tour opens on a chosen angle, not a random spawn point, so a buyer understands the space in the first second.</p></div>
-      <div class="pillar"><span class="num">→</span><h3>Smooth walk mode</h3><p>Real collision and continuous first-person movement — through hallways, around furniture — not teleporting between fixed points.</p></div>
-      <div class="pillar"><span class="num">→</span><h3>Full white-label branding</h3><p>Your logo, brand colours, 'built-for-you' landing page, and the tour itself.</p></div>
-      <div class="pillar"><span class="num">→</span><h3>Single-file ownership</h3><p>One HTML file. Embeds into your website, no recurring platform fee attached to it.</p></div>
-      <div class="pillar"><span class="num">→</span><h3>Mobile-checked before handoff</h3><p>Tested on a phone before it's sent to you — not assumed to work because it looked fine on a laptop.</p></div>
-      <div class="pillar"><span class="num">→</span><h3>Scoped to the listing</h3><p>Every job is scoped around the specific property and what you're trying to sell it on — not a generic package.</p></div>
-    </div>
+    <p class="stats-note reveal">Figures are from published third-party studies, platform data and vendor case studies about virtual tours and 3D content. They are not Virtual Estate client results; outcomes vary by property, market and how the tour is used. A <a href="https://www.library.hbs.edu/working-knowledge/are-virtual-tours-still-worth-it-in-real-estate-evidence-from-75000-home-sales">Harvard Business School study of 75,000 home sales</a> examines whether the effect still holds today, so read the two together.</p>
   </div>
 </section>
 
 <section id="process">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="kicker">06 · The process</span>
-      <h2>Four "rooms" captured in a single, continuous walkthrough.</h2>
+      <span class="kicker">05 · What you get and how it works</span>
+      <h2>A walkthrough you own, and the options around it.</h2>
       <p>From on-site capture to file delivery, all processing is done with deligence to ensure quality and timely delivery.</p>
     </div>
-    <div class="walk reveal">
-      <div class="walk-step">
-        <span class="room-tag">Entry</span>
-        <div><h3>On-site capture</h3><p>I use a stabilised camera to carefully capture your property and make sure everything is included. All you need to do is provide good natural light and open the curtains.</p></div>
-      </div>
-      <div class="walk-step">
-        <span class="room-tag">Processing</span>
-        <div><h3>Local reconstruction</h3><p>Footage is processed entirely on my own hardware, commerical and also open source tools into a smooth, walkable 3D reconstruction — cleaned, optimised, and fitted with real collision so you don't clip through walls or float through furniture.</p></div>
-      </div>
-      <div class="walk-step">
-        <span class="room-tag">Editing</span>
-        <div><h3>White-label pass</h3><p>Your logo, brand colours, property title, and WhatsApp button are injected into the landing page and viewer. No generic template look.</p></div>
-      </div>
-      <div class="walk-step">
-        <span class="room-tag">Delivery</span>
-        <div><h3>One file, handed over</h3><p>You receive a file containg the code ready to embed on your listing page, or I build your own custom landing page.</p></div>
-      </div>
+    <div class="grid3 reveal">
+      <article class="card"><h3>The walkthrough</h3><p>A link that opens in a browser, in your brand. Send it by message or email, show it as a QR code, or have your web team embed it. At sign-off it is handed over and belongs to you. There is no subscription for the walkthrough.</p></article>
+      <article class="card"><h3>Optional extras</h3><p>Floating information boxes, buttons and other on-screen elements. A small landing page built around it. A report on how people used it. More customisation means a higher fee, agreed on the call.</p></article>
+      <article class="card"><h3>After sign-off</h3><p>After-sales service helps keep your walkthrough live, with scope agreed with you. Work beyond that is a new engagement, which keeps scope clear for both sides.</p></article>
+    </div>
+    <ol class="steps reveal">
+      <li><b>Call</b><span>We talk through your space, goals and fit.</span></li>
+      <li><b>Agree</b><span>Scope, deliverables and timeline in writing.</span></li>
+      <li><b>Capture and build</b><span>Capture on site, then build and review with you.</span></li>
+      <li><b>Hand over</b><span>Sign-off, then the walkthrough is yours.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="pre-call">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker">06 · Qualifiers</span>
+      <h2>Questions people ask before they call.</h2>
+    </div>
+    <div class="faq reveal">
+      <details open><summary>We already have a 360 tour. Why add this?</summary><p>It adds to your tour and does not replace it. A 360 tour jumps between fixed points. A Virtual Estate walkthrough lets the visitor walk through the space continuously, as if they were there. Many clients keep their existing tour for discovery and use this where layout and finish decide the outcome.</p></details>
+      <details open><summary>Why does this cost more than a standard tour?</summary><p>It is a different kind of product, not a better version of the same one: continuous walking, your own branding, and a finished walkthrough that you own. The fee depends on scope, so it is agreed in writing.</p></details>
+      <details open><summary>Who owns it, and what if you stop trading?</summary><p>At sign-off the walkthrough is handed over and belongs to you. There is no subscription for the walkthrough, and it does not sit on a vendor's platform.</p></details>
+      <details open><summary>Can you deliver reliably, and what is my risk?</summary><p>Scope, deliverables and timeline are agreed in writing before work starts. After sign-off, after-sales service helps keep the walkthrough live and covers amendments. Some spaces are hard, such as glass and reflective surfaces, and you will be told early if yours is a poor fit.</p></details>
+      <details open><summary>Does it help sell, or is it a nicer brochure?</summary><p>Published studies from other platforms point to faster sales, more enquiries and better-qualified visitors, and a Harvard Business School study questions how large the effect is today. These are third-party figures, not Virtual Estate results. The outcome depends on the property, the market and how the tour is used.</p></details>
+      <details open><summary>Will it replace our photographer, video team or agents?</summary><p>No. Photos, film and agents stay. It lets serious buyers decide before they travel, so the visits that happen are better informed.</p></details>
+      <p class="faq-h">More questions</p>
+      <details><summary>Will it carry our brand, or someone else's?</summary><p>Your brand, with no third-party identity on the experience.</p></details>
+      <details><summary>How do we share and embed it?</summary><p>It is a link. Send it by message or email, show it as a QR code, or have your web team embed it. No app is needed. If you want a landing page built around it, that is available for a fee.</p></details>
+      <details><summary>Will it work on a slow phone or a poor connection?</summary><p>It needs an internet connection and runs best on Wi-Fi or good mobile data. It loads when tapped so the page stays light, but on a weak connection it will be slower.</p></details>
+      <details><summary>Can it be customised, and how long does it take?</summary><p>Yes. Floating information boxes, buttons and other on-screen elements can be added. More customisation means a higher fee. The timeline follows scope and is agreed in writing.</p></details>
     </div>
   </div>
 </section>
@@ -527,15 +599,15 @@
     <div class="cta-block reveal">
       <div class="contour"></div>
       <div>
-        <h2>Submit one listing and review the walkthrough before making a decision.</h2>
-        <p>Book a short discovery call. We will review your listing, discuss if a walkthrough is right for you, and plan the project based on your goals.</p>
+        <h2>Schedule a call.</h2>
+        <p>Tell me about the space and we will talk through fit, scope and timeline, and I will give you an honest view of whether this is right for you. Not property? Venues, products and collections are welcome.</p>
       </div>
       <div class="cta-actions">
-        <a class="btn-primary" href="https://calendly.com/bettercallshaz/discovery-call" target="_blank" rel="noopener">Book a Discovery Call →</a>
+        <a class="btn-primary" href="https://calendly.com/bettercallshaz/discovery-call" target="_blank" rel="noopener">Schedule a Call →</a>
         <a class="btn-ghost" href="https://wa.me/601167418426" target="_blank" rel="noopener">WhatsApp</a>
         <a class="btn-ghost" href="mailto:shaz@harrithshaz.com">Email</a>
       </div>
-      <p class="cta-note">Not a real estate listing? If you have something else in mind — a vehicle, a product, an exhibit piece, footage for a project — or you already have a scan that needs cleaning up before it's usable, <a href="mailto:shaz@harrithshaz.com">email me directly</a>. I take on custom scanning and splat cleanup work outside of real estate, case by case.</p>
+      <p class="cta-note">Not a real estate listing? If you have something else in mind, a vehicle, a product, an exhibit piece, an object, footage for a project, or you already have a scan that needs cleaning up before it's usable, <a href="mailto:shaz@harrithshaz.com">email me directly</a>. I take on custom scanning and splat cleanup work outside of real estate, case by case.</p>
     </div>
   </div>
 </section>
@@ -591,7 +663,7 @@
   // rail active state (non-critical, safe to skip on failure)
   try {
     const railItems = document.querySelectorAll('.rail-item');
-    const sections = ['hero','questions','difference','format','results','included','process','contact']
+    const sections = ['hero','questions','difference','format','results','process','pre-call','contact']
       .map(id => document.getElementById(id)).filter(Boolean);
     const railIo = new IntersectionObserver((entries) => {
       entries.forEach(e => {
